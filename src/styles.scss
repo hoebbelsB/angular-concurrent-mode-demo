@@ -1,0 +1,94 @@
+@use './styles/normalize.scss';
+
+app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+footerbar, sidebar, headerbar, main-content {
+  font-size: 48px;
+}
+
+headerbar {
+  background: dodgerblue;
+}
+sidebar {
+  background: hotpink;
+}
+main-content {
+  background: yellow;
+  overflow: auto;
+}
+footerbar {
+  background: forestgreen;
+}
+
+.navigation {
+  padding: .5rem;
+
+
+  a {
+
+    cursor: pointer;
+    padding: .25rem;
+    border: 1px solid deeppink;
+
+
+    &:visited {
+      color: inherit;
+    }
+
+    &:hover {
+      background: lightpink;
+    }
+
+    &.active {
+      text-decoration: underline;
+    }
+
+  }
+}
+
+.items {
+  max-height: 100%;
+  overflow: auto;
+}
+
+.content {
+
+  flex-grow: 1;
+
+  height: 100%;
+  overflow: hidden;
+
+  router-outlet + * {
+
+    display: grid;
+    padding: 1rem;
+    height: 100%;
+    grid:
+    'header   header' 128px
+    'sidebar  content' 1fr
+    'footer   footer' 128px /
+    minmax(100px, 1fr)   3fr;
+
+    headerbar {
+      grid-area: header;
+    }
+
+    sidebar {
+      grid-area: sidebar;
+    }
+
+    main-content {
+      grid-area: content;
+    }
+
+    footerbar {
+      grid-area: footer;
+    }
+  }
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
